@@ -5,7 +5,7 @@ public class invite {
 
         System.out.println("2조 분들 반갑습니다.");
 
-        System.out.println("변경!");
+        System.out.println("경!");
     }
 
 
