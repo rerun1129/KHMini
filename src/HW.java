@@ -2,7 +2,6 @@ public class HW {
 
 
     public static void main(String[] args) {
-        System.out.println("hw");
-        System.out.println("hi");
+        System.out.println("이것만 커밋합니다.");
     }
 }
