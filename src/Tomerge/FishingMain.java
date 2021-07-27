@@ -1,16 +1,16 @@
+package Tomerge;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 
 import javax.swing.*;
 
-public class MouseEventTest extends JFrame implements MouseListener, MouseMotionListener {
+public class FishingMain extends JFrame implements MouseListener, MouseMotionListener, KeyListener {
 
+    private JTextField test;
+    JPanel pan = new JPanel();
     JLabel label = new JLabel();
-    JLabel label1 = new JLabel("좌클릭(유지/떼기) => 캐스팅 / 낚아올리기 ");
+    JLabel label1 = new JLabel("좌클릭(유지/떼기) => 캐스팅 / 낚아올리기   Esc =>나가기");
 
     Image image1 = new ImageIcon("img/casting.gif").getImage().getScaledInstance(404, 271, 0);
     Image image2 = new ImageIcon("img/fishing.gif").getImage().getScaledInstance(404, 271, 0);
@@ -18,17 +18,21 @@ public class MouseEventTest extends JFrame implements MouseListener, MouseMotion
     Image result = new ImageIcon("img/1.PNG").getImage().getScaledInstance(404, 271, 0);
 
 
-    public MouseEventTest() {
-        super("마우스 이벤트 테스트");
+    public FishingMain() {
+        super("낚시 게임");
 
-        setBounds(300, 300, 404, 350);
+        setBounds(300, 300, 500, 400);
+        test = new JTextField(0);
 
-        JPanel pan = new JPanel();
+
         pan.addMouseListener(this);
         pan.addMouseMotionListener(this);
+        test.addKeyListener(this);
+
 
         label.setIcon(new ImageIcon(image1));
 
+        add(test);
         add(pan);
         pan.add(label);
         pan.add(label1, "South");
@@ -56,12 +60,29 @@ public class MouseEventTest extends JFrame implements MouseListener, MouseMotion
     }
 
     @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode()==27){
+            exit(e);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
     public void mousePressed(MouseEvent e) {
         // 마우스로 클릭한 상태가 지속될 때 감지
         if (e.getButton() == 1) {
             casting(e);
         }else if (e.getButton() == 2) {
-            exit(e);
+            setResult(e);
         }else if(e.getButton() == 3){
             recasting(e);
         }
@@ -82,48 +103,38 @@ public class MouseEventTest extends JFrame implements MouseListener, MouseMotion
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // 마우스가 특정 객체에서 벗어날 때
+       //exit(e);
 
 
     }
 
-    /*public void display(String eventName, MouseEvent e) {
-        System.out.println(
-                eventName + " : "
-                        + "[x] : " + e.getX()
-                        + "[y] : " + e.getY()
-                        + "[clickType] : " + e.getClickCount()
-                        + "[clickBtn] : " + e.getButton()           //0 아이들 1좌 2중간 3우
-        );
-    }*/
 
     public static void main(String[] args) {
-        new MouseEventTest();
+        new FishingMain();
     }
 
     public void casting(MouseEvent e) {
         label.setIcon(new ImageIcon(image2));
-
     }
 
-    public void withdraw(MouseEvent e) {
-        label.setIcon(new ImageIcon(image1));
-        label1.setText("좌클릭(유지/떼기) => 캐스팅 / 낚아올리기");
+    public void exit(KeyEvent e) {
+        dispose();
+        new FishingResult();
     }
 
     public void success(MouseEvent e) {
         label.setIcon(new ImageIcon(image3));
-        label1.setText("휠 버튼 => 잡은 물고기 보기  우클릭 => 리캐스팅");
+        label1.setText("휠 버튼 => 잡은 물고기 보기  우클릭 => 리캐스팅   Esc =>나가기");
     }
 
-    public void exit(MouseEvent e) {
-        label.setIcon(new ImageIcon(result));                           //여기에 잡은 물고기 사진이랑 제원?
-        label1.setText("우클릭 => 리캐스팅  마우스 화면출입 =>나가기(미구현)");//그리고 여기에 다른 컴포넌트 띄우면서
+    public void setResult(MouseEvent e) {
+        label.setIcon(new ImageIcon(result));  //여기에 잡은 물고기 사진이랑 제원?
+        label1.setText("우클릭 => 리캐스팅  Esc =>나가기");//그리고 여기에 다른 컴포넌트 띄우면서
     }
 
     public void recasting(MouseEvent e) {
         label.setIcon(new ImageIcon(image1));
-        label1.setText("좌클릭(유지/떼기) => 캐스팅 / 낚아올리기");
+        label1.setText("좌클릭(유지/떼기) => 캐스팅 / 낚아올리기   Esc =>나가기");
 
     }
 

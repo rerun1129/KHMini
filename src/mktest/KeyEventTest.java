@@ -1,3 +1,4 @@
+package mktest;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -50,9 +51,6 @@ public class KeyEventTest extends JFrame implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {//인터페이스 오류 방지
-
-
-
 
 
     }
