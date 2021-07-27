@@ -108,7 +108,7 @@ public class MouseEventTest extends JFrame implements MouseListener, MouseMotion
 
     public void withdraw(MouseEvent e) {
         label.setIcon(new ImageIcon(image1));
-        label1.setText("조작법 : 좌클릭(유지/떼기) => 캐스팅 / 낚아올리기");
+        label1.setText("좌클릭(유지/떼기) => 캐스팅 / 낚아올리기");
     }
 
     public void success(MouseEvent e) {
@@ -123,7 +123,7 @@ public class MouseEventTest extends JFrame implements MouseListener, MouseMotion
 
     public void recasting(MouseEvent e) {
         label.setIcon(new ImageIcon(image1));
-        label1.setText("조작법 : 좌클릭(유지/떼기) => 캐스팅 / 낚아올리기");
+        label1.setText("좌클릭(유지/떼기) => 캐스팅 / 낚아올리기");
 
     }
 
